@@ -30,10 +30,39 @@
     {{-- content --}}
     <main class="container-fluid" style="padding:0px;">
         <div class="row">
-            @yield('content')
+            <nav id="sideNav" class="col-2">
+                <div class="row">
+                    <div id="account">
+                        @if(isset($username))
+                            <p id="username">{{$username}}</p>
+                        @else
+                            <p id="username">Trial account</p>
+                            <span id="anonymousPrompt">You are using free account. That means your files will be automatically deleted after 14 days from uploding. You can change it by <a href="{{url('register')}}">signing up</a></span>
+                        @endif
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div id="generalActions">
+                        <div class="row">
+                            <div class="col-12 menuItem" data-destination="{{url('app/files')}}"><span><i class="icon-folder"></i>My files</span></p></div>
+                            <div class="col-12 menuItem" data-destination="{{url('app/recent')}}"><span><i class="icon-clock"></i>Recent Files</span></p></div>
+                        </div>
+                    </div>
+                </div>
+
+            </nav>
+
+            <div class="col-10 container" id="rightPanel">
+                <nav id="topNav" class="col-12">
+                    top nav
+                </nav>
+
+                <div id="app" class="col-12">
+                    @yield('content')
+                </div>
         </div>
     </main>
-
 </div>
 </div>
 

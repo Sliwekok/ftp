@@ -43,6 +43,14 @@
         #buttons{
             position: absolute;
             z-index: 10;
+            display: inline-flex;
+            margin-top: 50vh;
+            justify-content: center;
+            
+            button{
+                font-size: 1.5rem;
+                padding: 1.5vh 2vh;
+            }
         }
     }
 

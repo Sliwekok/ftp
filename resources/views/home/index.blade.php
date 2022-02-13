@@ -9,8 +9,8 @@
         </div>
 
         <div class="col-6 offset-3" id="buttons">
-            <div class="col-3 offset-3"><a href="{{url('/app')}}"><button class="btn btn-primary">anonymoius</button></a></div>
-            <div class="col-3"><a href="{{url('/login')}}"><button class="btn btn-primary">anonymoius</button></a></div>
+            <div class="col-4 offset-2"><a href="{{url('/app')}}"><button class="btn btn-primary">Start now</button></a></div>
+            <div class="col-4"><a href="{{url('/login')}}"><button class="btn btn-primary">Log in</button></a></div>
         </div>
         
         <img alt="baner" id="backgroundImage" src="{{asset('images/baner-darken.jpg')}}">

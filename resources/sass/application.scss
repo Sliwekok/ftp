@@ -1,6 +1,57 @@
-html, body{
-    background-color: $bg-color;
-    color: $font-color;
-    font-family: $fontFamily;
-    $font-size: 1rem;
+#sideNav{
+    border: 1px white solid;
+    height: 100vh;
+    padding: 1.5%;
+
+    #account{
+        p#username{
+            font-size: 1.1rem;
+
+        }
+        span#anonymousPrompt{
+            color: $error;
+            text-align: justify;
+            font-size: 0.75rem;
+            a{
+                color: $info;
+            }
+        }
+    }
+
+    #generalActions{
+        margin-top: 5vh;
+
+        .menuItem{
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            display: flex;
+            justify-content: baseline;
+            padding: 1vh;
+
+            &:hover{
+                background-color: lighten($bg-color, 10);
+            }
+            i{
+                margin-right: 5px;
+            }
+            span{
+                user-select: none;
+            }
+        }
+
+    }
+
+}
+#rightPanel{
+    max-height: 100vh;
+}
+#topNav{
+    border: 1px white solid;
+    padding: 1vh;
+    height: 7.5vh;
+}
+#app{
+    border: 1px white solid;
+    padding: 2.5vh;
+    height: 85vh;
 }

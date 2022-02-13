@@ -17,4 +17,6 @@ Route::get('/', 'HomeController@index');
 
 Route::prefix('app')->group(function(){
     Route::get('/', 'AppController@index');
+    Route::get('/files', 'AppController@listAllFiles');
+    Route::get('/recent', 'AppController@recentlyEdited');
 });

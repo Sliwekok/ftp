@@ -47,6 +47,12 @@
       "css": "dot-3",
       "code": 59397,
       "src": "entypo"
+    },
+    {
+      "uid": "598a5f2bcf3521d1615de8e1881ccd17",
+      "css": "clock",
+      "code": 59398,
+      "src": "fontawesome"
     }
   ]
 }

@@ -1,6 +1,7 @@
 // main variables for web styling
 // Body
 $bg-color: rgb(88, 88, 88);
+$second-color: rgb(64, 73, 255);
 $font-color: rgb(236, 236, 236);
 
 // Typography
@@ -15,8 +16,15 @@ html, body{
     background-color: $bg-color;
     color: $font-color;
     font-family: $fontFamily;
-    $font-size: 2rem;
+    font-size: 1rem;
     overflow-x: hidden;
+}
+a{
+    color: $font-color;
+
+    &:hover{
+        color: $font-color;
+    }
 }
 
 @import 'application';

@@ -93,7 +93,21 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-
+// on click reload main div content files to have smooth feeling
+$(document).on('click', '.menuItem', function (event) {
+  var url = $(this).data("destination");
+  $.ajax({
+    url: url,
+    method: 'get',
+    error: function error(_error) {
+      console.log("=========");
+      console.log(_error);
+    },
+    success: function success() {
+      $("#app").load(url);
+    }
+  });
+});
 
 /***/ }),
 

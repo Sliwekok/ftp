@@ -1,7 +1,7 @@
-@extends('home.layout')
+@extends('app.layout')
 
 @section('content')
-<div id="app">
+<div id="files">
     kozak app
 </div>
     

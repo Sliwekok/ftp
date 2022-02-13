@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'fontello';
-  src: url(/fonts/fontello.eot?508f7a04d48e9d661b7aea6ee9802565);
-  src: url(/fonts/fontello.eot?508f7a04d48e9d661b7aea6ee9802565#iefix) format('embedded-opentype'),
-       url(/fonts/fontello.woff2?68c55c5e446a9e51d3a74a51f8665170) format('woff2'),
-       url(/fonts/fontello.woff?6717e81ff920e8c3044c8e75fa66cbab) format('woff'),
-       url(/fonts/fontello.ttf?9b7b78eeed9872c686eb105f8d25517a) format('truetype'),
-       url(/fonts/fontello.svg?ac627ded7cbd0e7b56ef68bb9644bcd4#fontello) format('svg');
+  src: url(/fonts/fontello.eot?df326f7b5b0686e9cec782a7f6abe7a7);
+  src: url(/fonts/fontello.eot?df326f7b5b0686e9cec782a7f6abe7a7#iefix) format('embedded-opentype'),
+       url(/fonts/fontello.woff2?c9e2306ab93a167a5df629b10f83377f) format('woff2'),
+       url(/fonts/fontello.woff?95f5173cb4a30fe504c7b8784a572eb8) format('woff'),
+       url(/fonts/fontello.ttf?9aaeb5614e96a56b675a6588fb75f9c8) format('truetype'),
+       url(/fonts/fontello.svg?71d8918afacc22f93887611da9be2484#fontello) format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -15,7 +15,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'fontello';
-    src: url('../font/fontello.svg?1094597#fontello') format('svg');
+    src: url('../font/fontello.svg?40246903#fontello') format('svg');
   }
 }
 */
@@ -60,20 +60,86 @@
 .icon-plus-circled:before { content: '\E803'; } /* '' */
 .icon-folder:before { content: '\E804'; } /* '' */
 .icon-dot-3:before { content: '\E805'; } /* '' */
+.icon-clock:before { content: '\E806'; } /* '' */
 .icon-share-squared:before { content: '\F1E1'; } /* '' */
 html,
 body {
   background-color: #585858;
   color: #ececec;
   font-family: "Nunito", sans-serif;
+  font-size: 1rem;
   overflow-x: hidden;
 }
 
-html,
-body {
-  background-color: #585858;
+a {
   color: #ececec;
-  font-family: "Nunito", sans-serif;
+}
+
+a:hover {
+  color: #ececec;
+}
+
+#sideNav {
+  border: 1px white solid;
+  height: 100vh;
+  padding: 1.5%;
+}
+
+#sideNav #account p#username {
+  font-size: 1.1rem;
+}
+
+#sideNav #account span#anonymousPrompt {
+  color: #ff6868;
+  text-align: justify;
+  font-size: 0.75rem;
+}
+
+#sideNav #account span#anonymousPrompt a {
+  color: #68b4ff;
+}
+
+#sideNav #generalActions {
+  margin-top: 5vh;
+}
+
+#sideNav #generalActions .menuItem {
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  display: flex;
+  justify-content: baseline;
+  padding: 1vh;
+}
+
+#sideNav #generalActions .menuItem:hover {
+  background-color: #727272;
+}
+
+#sideNav #generalActions .menuItem i {
+  margin-right: 5px;
+}
+
+#sideNav #generalActions .menuItem span {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+#rightPanel {
+  max-height: 100vh;
+}
+
+#topNav {
+  border: 1px white solid;
+  padding: 1vh;
+  height: 7.5vh;
+}
+
+#app {
+  border: 1px white solid;
+  padding: 2.5vh;
+  height: 85vh;
 }
 
 #index {
@@ -127,5 +193,13 @@ body {
 #index #baner #buttons {
   position: absolute;
   z-index: 10;
+  display: inline-flex;
+  margin-top: 50vh;
+  justify-content: center;
+}
+
+#index #baner #buttons button {
+  font-size: 1.5rem;
+  padding: 1.5vh 2vh;
 }
 
