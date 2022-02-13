@@ -1,0 +1,8 @@
+
+.icon-upload:before { content: '\e800'; } /* '' */
+.icon-download:before { content: '\e801'; } /* '' */
+.icon-trash-empty:before { content: '\e802'; } /* '' */
+.icon-plus-circled:before { content: '\e803'; } /* '' */
+.icon-folder:before { content: '\e804'; } /* '' */
+.icon-dot-3:before { content: '\e805'; } /* '' */
+.icon-share-squared:before { content: '\f1e1'; } /* '' */

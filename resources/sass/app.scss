@@ -1,0 +1,26 @@
+// main variables for web styling
+// Body
+$bg-color: rgb(88, 88, 88);
+$font-color: rgb(236, 236, 236);
+
+// Typography
+$fontFamily: 'Nunito', sans-serif;
+
+// Colors
+$error: rgb(255, 104, 104);
+$okay: rgb(142, 255, 90);
+$info: rgb(104, 180, 255);
+
+html, body{
+    background-color: $bg-color;
+    color: $font-color;
+    font-family: $fontFamily;
+    $font-size: 2rem;
+    overflow-x: hidden;
+}
+
+@import 'application';
+@import 'home';
+
+// add fontello
+@import 'fontello/css/fontello.css';
