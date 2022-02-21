@@ -1,0 +1,141 @@
+#uploadForm{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    margin: 0px;
+    display: none;
+    background-color: darken(rgba($bg-color, .95), 10);
+
+    #wrapper{
+        $darked: darken(rgba($bg-color, 1), 15);
+        margin-top: 10vh;
+        background-color: darken(rgba($bg-color, 1), 15);
+        position: relative;
+        display: block;
+        border-radius: 1.5%;
+
+        #title{
+            background-color: $darked;
+            display: inline-flex;
+            color: $font-color;
+            border-bottom: 1px white solid;
+
+
+            #smallExit{
+                cursor: pointer;
+                color: $error;
+                text-align: center;
+            }
+        }
+        #uploadForm{
+            background-color: $darked;
+            padding: 2.5vh;
+            display: block;
+            height: fit-content;
+
+            ul#listFiles{
+                list-style: none;
+                display: none;
+                font-size: 0.85rem;
+                display: flex;
+                flex-direction: column;
+                margin-top: 2.5vh;
+
+                li{
+                    padding: 0.65vh;
+                    margin: 0.25vh;
+                    display: inline-flex;
+                    vertical-align: text-bottom;
+
+                    span.fileSize{
+                        color: darken($font-color, 10);
+                        margin-left: 15px;
+                    }
+
+                }
+                li:nth-child(2n){
+                    background-color: lighten($bg-color, 5);
+                }
+
+                &:last-child{
+                    border-bottom: 0px; 
+                }
+
+            }
+
+            label.labelFiles{
+                height: 15vw;
+                width: 15vw;
+                margin: 10vh;
+                margin-left: 25vw;
+            }
+
+            #boxShaped{
+                border: 2px dashed darken($font-color, 10);
+                height: 100%;
+                width: 100%;
+                display: block;
+                cursor: pointer;
+
+                i{
+                    font-size: 5rem;
+                    text-align: center;
+                    width: 100%;
+                    height: 100%;
+                    display: block;
+                    margin-top: 25%;
+                    
+                }
+            }
+            #uploadButton{
+                position: absolute;
+                opacity: 0;
+                z-index: -1;
+            }
+            #selectGroup{
+                display: inline-flex;
+
+                .selectFilesButtons{
+                    cursor: pointer;
+                    transition: background-color 0.2s ease;
+                    text-align: center;
+                    justify-content: baseline;
+                    padding: 1vh;
+                    padding-bottom: 0.5vh;
+                    user-select: none;
+                    cursor: pointer;
+                    font-size: 1rem !important;
+                    font-weight: 500 !important;
+
+                    label{
+                        cursor: pointer;
+                        width: 100%;
+                        height: 100%;
+                        padding-top: 0.75vh;
+                    }
+
+                    &:hover{
+                        background-color: lighten($bg-color, 10);
+                    }
+                }
+
+                #addFolder{
+                    i#checkerFolder{
+                        margin: 0px;
+                        visibility: hidden;
+                    }
+                    #checkedBorder{
+                        border: 1px white solid;
+                        i{
+                            color: $okay;
+                        }
+                    }
+                }
+
+            }
+        }
+
+    }
+
+}

@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'fontello';
-  src: url(/fonts/fontello.eot?df326f7b5b0686e9cec782a7f6abe7a7);
-  src: url(/fonts/fontello.eot?df326f7b5b0686e9cec782a7f6abe7a7#iefix) format('embedded-opentype'),
-       url(/fonts/fontello.woff2?c9e2306ab93a167a5df629b10f83377f) format('woff2'),
-       url(/fonts/fontello.woff?95f5173cb4a30fe504c7b8784a572eb8) format('woff'),
-       url(/fonts/fontello.ttf?9aaeb5614e96a56b675a6588fb75f9c8) format('truetype'),
-       url(/fonts/fontello.svg?71d8918afacc22f93887611da9be2484#fontello) format('svg');
+  src: url(/fonts/fontello.eot?6bd347e72596f417b81f9fc7811d11ee);
+  src: url(/fonts/fontello.eot?6bd347e72596f417b81f9fc7811d11ee#iefix) format('embedded-opentype'),
+       url(/fonts/fontello.woff2?9a612fc455968dbb4319fcd2d3266e97) format('woff2'),
+       url(/fonts/fontello.woff?fd12944926c827422df87e6d20fb7da2) format('woff'),
+       url(/fonts/fontello.ttf?f69dc26d92e7990993211738fddcaef1) format('truetype'),
+       url(/fonts/fontello.svg?5c5ad6535ec991321a2e0c2977fca6ea#fontello) format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -15,7 +15,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'fontello';
-    src: url('../font/fontello.svg?40246903#fontello') format('svg');
+    src: url('../font/fontello.svg?26493591#fontello') format('svg');
   }
 }
 */
@@ -57,10 +57,17 @@
 .icon-upload:before { content: '\E800'; } /* '' */
 .icon-download:before { content: '\E801'; } /* '' */
 .icon-trash-empty:before { content: '\E802'; } /* '' */
-.icon-plus-circled:before { content: '\E803'; } /* '' */
+.icon-doc:before { content: '\E803'; } /* '' */
 .icon-folder:before { content: '\E804'; } /* '' */
 .icon-dot-3:before { content: '\E805'; } /* '' */
 .icon-clock:before { content: '\E806'; } /* '' */
+.icon-find:before { content: '\E807'; } /* '' */
+.icon-view:before { content: '\E808'; } /* '' */
+.icon-cancel:before { content: '\E809'; } /* '' */
+.icon-plus:before { content: '\E80A'; } /* '' */
+.icon-ok:before { content: '\E80B'; } /* '' */
+.icon-home:before { content: '\E80C'; } /* '' */
+.icon-sort:before { content: '\F15D'; } /* '' */
 .icon-share-squared:before { content: '\F1E1'; } /* '' */
 html,
 body {
@@ -79,10 +86,20 @@ a:hover {
   color: #ececec;
 }
 
+i {
+  margin-right: 5px;
+}
+
+.alert {
+  position: absolute;
+  top: 15vh;
+  display: none;
+}
+
 #sideNav {
-  border: 1px white solid;
   height: 100vh;
   padding: 1.5%;
+  border-right: 1px solid white;
 }
 
 #sideNav #account p#username {
@@ -103,7 +120,8 @@ a:hover {
   margin-top: 5vh;
 }
 
-#sideNav #generalActions .menuItem {
+#sideNav #generalActions .fileAction,
+#sideNav #generalActions #logoutButton {
   cursor: pointer;
   transition: background-color 0.2s ease;
   display: flex;
@@ -111,15 +129,13 @@ a:hover {
   padding: 1vh;
 }
 
-#sideNav #generalActions .menuItem:hover {
+#sideNav #generalActions .fileAction:hover,
+#sideNav #generalActions #logoutButton:hover {
   background-color: #727272;
 }
 
-#sideNav #generalActions .menuItem i {
-  margin-right: 5px;
-}
-
-#sideNav #generalActions .menuItem span {
+#sideNav #generalActions .fileAction span,
+#sideNav #generalActions #logoutButton span {
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -131,15 +147,117 @@ a:hover {
 }
 
 #topNav {
-  border: 1px white solid;
   padding: 1vh;
   height: 7.5vh;
+  display: inline-flex;
+  border-bottom: 1px solid white;
+}
+
+#topNav #menuTop {
+  display: inline-flex;
+  flex-wrap: wrap;
+}
+
+#topNav #menuTop .menuItem {
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  text-align: center;
+  justify-content: baseline;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 1.25vh;
+}
+
+#topNav #menuTop .menuItem:hover {
+  background-color: #727272;
 }
 
 #app {
-  border: 1px white solid;
   padding: 2.5vh;
-  height: 85vh;
+  height: calc(92.5vh - 1px);
+}
+
+#appContainer {
+  display: inline-flex;
+}
+
+#appContainer #directories {
+  border-right: 1px solid white;
+  width: 12.5%;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: baseline;
+}
+
+#appContainer #listedFiles {
+  width: 100%;
+  padding: 0vh 2.5vh;
+}
+
+#appContainer #listedFiles .userFile {
+  margin-bottom: 0.75vh;
+  font-size: 0.9rem;
+  border-bottom: 1px solid white;
+  display: inline-flex;
+  justify-content: baseline;
+}
+
+#appContainer #listedFiles .userFile .data a {
+  color: #ececec;
+  text-decoration: none;
+}
+
+#appContainer #listedFiles .userFile .data a:hover {
+  color: #68b4ff;
+}
+
+#appContainer #listedFiles .userFile .data img.smallPreview {
+  height: 40px;
+  width: 50px;
+  margin-right: 10px;
+  margin-bottom: 0.75vh;
+}
+
+#appContainer #listedFiles .userFile .data .fileSize {
+  font-size: 0.8rem;
+  color: lightgray;
+}
+
+#appContainer #listedFiles .userFile .fileMenagment {
+  font-size: 1.15rem;
+  display: inline-flex;
+  justify-content: baseline;
+  padding-top: 0.75vh;
+}
+
+#appContainer #listedFiles .userFile .fileMenagment .dropdown-toggle::after {
+  display: none;
+}
+
+#appContainer #listedFiles .userFile .fileMenagment .action {
+  cursor: pointer;
+}
+
+#appContainer #listedFiles .userFile .fileMenagment .action.deleteFile:hover {
+  color: #ff6868;
+}
+
+#appContainer #listedFiles .userFile .fileMenagment .action.options {
+  right: 4.5vh;
+  position: absolute;
+  transform: rotate(90deg);
+}
+
+#appContainer #listedFiles .userFile .fileMenagment .dropdown-menu .dropdownFileName {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+#appContainer #listedFiles .userFile .fileMenagment .dropdown-menu .dropdownFileName:hover {
+  background-color: inherit;
 }
 
 #index {
@@ -198,8 +316,152 @@ a:hover {
   justify-content: center;
 }
 
-#index #baner #buttons button {
+#index #baner #buttons button,
+#index #baner #buttons p {
   font-size: 1.5rem;
   padding: 1.5vh 2vh;
+}
+
+#uploadForm {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  margin: 0px;
+  display: none;
+  background-color: rgba(63, 63, 63, 0.95);
+}
+
+#uploadForm #wrapper {
+  margin-top: 10vh;
+  background-color: #323232;
+  position: relative;
+  display: block;
+  border-radius: 1.5%;
+}
+
+#uploadForm #wrapper #title {
+  background-color: #323232;
+  display: inline-flex;
+  color: #ececec;
+  border-bottom: 1px white solid;
+}
+
+#uploadForm #wrapper #title #smallExit {
+  cursor: pointer;
+  color: #ff6868;
+  text-align: center;
+}
+
+#uploadForm #wrapper #uploadForm {
+  background-color: #323232;
+  padding: 2.5vh;
+  display: block;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+#uploadForm #wrapper #uploadForm ul#listFiles {
+  list-style: none;
+  display: none;
+  font-size: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  margin-top: 2.5vh;
+}
+
+#uploadForm #wrapper #uploadForm ul#listFiles li {
+  padding: 0.65vh;
+  margin: 0.25vh;
+  display: inline-flex;
+  vertical-align: text-bottom;
+}
+
+#uploadForm #wrapper #uploadForm ul#listFiles li span.fileSize {
+  color: lightgray;
+  margin-left: 15px;
+}
+
+#uploadForm #wrapper #uploadForm ul#listFiles li:nth-child(2n) {
+  background-color: #656565;
+}
+
+#uploadForm #wrapper #uploadForm ul#listFiles:last-child {
+  border-bottom: 0px;
+}
+
+#uploadForm #wrapper #uploadForm label.labelFiles {
+  height: 15vw;
+  width: 15vw;
+  margin: 10vh;
+  margin-left: 25vw;
+}
+
+#uploadForm #wrapper #uploadForm #boxShaped {
+  border: 2px dashed lightgray;
+  height: 100%;
+  width: 100%;
+  display: block;
+  cursor: pointer;
+}
+
+#uploadForm #wrapper #uploadForm #boxShaped i {
+  font-size: 5rem;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  display: block;
+  margin-top: 25%;
+}
+
+#uploadForm #wrapper #uploadForm #uploadButton {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+
+#uploadForm #wrapper #uploadForm #selectGroup {
+  display: inline-flex;
+}
+
+#uploadForm #wrapper #uploadForm #selectGroup .selectFilesButtons {
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  text-align: center;
+  justify-content: baseline;
+  padding: 1vh;
+  padding-bottom: 0.5vh;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
+  font-size: 1rem !important;
+  font-weight: 500 !important;
+}
+
+#uploadForm #wrapper #uploadForm #selectGroup .selectFilesButtons label {
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  padding-top: 0.75vh;
+}
+
+#uploadForm #wrapper #uploadForm #selectGroup .selectFilesButtons:hover {
+  background-color: #727272;
+}
+
+#uploadForm #wrapper #uploadForm #selectGroup #addFolder i#checkerFolder {
+  margin: 0px;
+  visibility: hidden;
+}
+
+#uploadForm #wrapper #uploadForm #selectGroup #addFolder #checkedBorder {
+  border: 1px white solid;
+}
+
+#uploadForm #wrapper #uploadForm #selectGroup #addFolder #checkedBorder i {
+  color: #8eff5a;
 }
 

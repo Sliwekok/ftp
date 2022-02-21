@@ -1,7 +1,7 @@
 #sideNav{
-    border: 1px white solid;
     height: 100vh;
     padding: 1.5%;
+    border-right: 1px solid white;
 
     #account{
         p#username{
@@ -21,18 +21,15 @@
     #generalActions{
         margin-top: 5vh;
 
-        .menuItem{
+        .fileAction, #logoutButton{
             cursor: pointer;
             transition: background-color 0.2s ease;
             display: flex;
             justify-content: baseline;
             padding: 1vh;
-
+            
             &:hover{
                 background-color: lighten($bg-color, 10);
-            }
-            i{
-                margin-right: 5px;
             }
             span{
                 user-select: none;
@@ -46,12 +43,116 @@
     max-height: 100vh;
 }
 #topNav{
-    border: 1px white solid;
     padding: 1vh;
     height: 7.5vh;
+    display: inline-flex;
+    border-bottom: 1px solid white;
+
+    #menuTop{
+
+        display: inline-flex;
+        flex-wrap: wrap;
+
+        .menuItem{
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            text-align: center;
+            justify-content: baseline;
+            width: fit-content;
+            padding: 1.25vh;
+
+            &:hover{
+                background-color: lighten($bg-color, 10);
+            }
+        }
+
+    }
+
 }
 #app{
-    border: 1px white solid;
     padding: 2.5vh;
-    height: 85vh;
+    height: calc(92.5vh - 1px); 
+}
+#appContainer{
+    display: inline-flex;
+
+    #directories{
+        border-right: 1px solid white;
+        width: 12.5%;
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: baseline;
+    }
+    #listedFiles{
+
+        width: 100%;
+        padding: 0vh 2.5vh;
+
+        .userFile{
+            margin-bottom: 0.75vh;
+            font-size: 0.9rem;
+            border-bottom: 1px solid white;
+            display: inline-flex;
+            justify-content: baseline;
+
+            .data{
+                a{
+                    color: $font-color;
+                    text-decoration: none;
+
+                    &:hover{
+                        color: $info;
+                    }
+                }
+                img.smallPreview{
+                    height: 40px;
+                    width: 50px;
+                    margin-right: 10px;
+                    margin-bottom: 0.75vh;
+                }
+                .fileSize{
+                    font-size: 0.8rem;
+                    color: darken($font-color, 10);
+                }
+            }
+            .fileMenagment{
+                font-size: 1.15rem;
+                display: inline-flex;
+                justify-content: baseline;
+                padding-top: 0.75vh;
+
+                // this is for arrow in bootstrap dropdown
+                .dropdown-toggle::after {
+                    display:none;
+                }
+
+                .action{
+                    cursor: pointer;
+
+                    &.deleteFile:hover{
+                        color: $error;
+                    }
+                    &.options{
+                        right: 4.5vh;
+                        position: absolute;
+                        transform: rotate(90deg);
+                    }
+
+                }
+
+                .dropdown-menu{
+                    .dropdownFileName{
+                        user-select: none;
+                        &:hover{
+                            background-color: inherit;
+                        }
+                    }
+                }
+
+            }
+
+        }
+
+    }
+
 }

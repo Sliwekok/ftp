@@ -10,8 +10,8 @@
     <title>StoreIt - free file hosting server made for you</title>
 
     <!-- Scripts -->
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous" defer></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
@@ -27,26 +27,26 @@
 <div class="container-fluid">
 <div class="row">
 
-    {{-- content --}}
     <main class="container-fluid" style="padding:0px;">
         <div class="row">
             <nav id="sideNav" class="col-2">
                 <div class="row">
                     <div id="account">
-                        @if(isset($username))
-                            <p id="username">{{$username}}</p>
+                        @auth
+                            <p id="username">{{Auth::user()->name}}</p>
                         @else
                             <p id="username">Trial account</p>
-                            <span id="anonymousPrompt">You are using free account. That means your files will be automatically deleted after 14 days from uploding. You can change it by <a href="{{url('register')}}">signing up</a></span>
-                        @endif
+                            <span id="anonymousPrompt">{{Session::get('token')}} You are using free account. That means your files will be automatically deleted after 14 days from uploding. You can change it by <a href="{{url('register')}}">signing up</a></span>
+                        @endauth
                     </div>
                 </div>
 
                 <div class="row">
                     <div id="generalActions">
                         <div class="row">
-                            <div class="col-12 menuItem" data-destination="{{url('app/files')}}"><span><i class="icon-folder"></i>My files</span></p></div>
-                            <div class="col-12 menuItem" data-destination="{{url('app/recent')}}"><span><i class="icon-clock"></i>Recent Files</span></p></div>
+                            <div class="col-12 fileAction" data-destination="{{url('app/files')}}"><span><i class="fontello icon-folder"></i>My files</span></div>
+                            <div class="col-12 fileAction" data-destination="{{url('app/recent')}}"><span><i class="fontello icon-clock"></i>Recent Files</span></div>
+                            <div class="col-12" id="logoutButton" data-destination="{{url('logout')}}"><span>Logout</span></div>
                         </div>
                     </div>
                 </div>
@@ -54,14 +54,44 @@
             </nav>
 
             <div class="col-10 container" id="rightPanel">
-                <nav id="topNav" class="col-12">
-                    top nav
-                </nav>
-
-                <div id="app" class="col-12">
-                    @yield('content')
+                <div class="row">
+                    <nav id="topNav" class="col-12">
+                        <div class="col-4"><span id="logo">StoreIt</span></div>
+                        <div class="col-4 offset-3" id="menuTop">
+                            <div class="menuItem" id="upload"><i class="fontello icon-upload"></i>Upload</div>
+                            <div class="menuItem"><i class="fontello icon-sort"></i>Sort</div>
+                            <div class="menuItem"><i class="fontello icon-find"></i>Find</div>
+                            <div class="menuItem"><i class="fontello icon-view"></i>Change View</div>
+                        </div>
+                    </nav>
                 </div>
+
+                <div class="row">
+                    <div id="app" class="col-12">
+                        @yield('content')
+                    </div>
+                </div>
+
         </div>
+
+        <div id="uploadForm">
+            @include('app.uploadForm')
+        </div>
+
+        <div class="alert col-6 offset-3 fade show" role="alert">
+            <div class="row">
+                <div class="col-10">
+                    <h4 class="alert-heading" id="alertHeader"></h4>
+                </div>
+                <div class="col-1 offset-1">
+                    <button type="button" class="btn-close" aria-label="Close"></button>
+                </div>
+            </div>
+            <div class="row">
+                <p class="mb-0" id="alertContent"></p>
+            </div>
+        </div>
+
     </main>
 </div>
 </div>

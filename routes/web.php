@@ -17,6 +17,15 @@ Route::get('/', 'HomeController@index');
 
 Route::prefix('app')->group(function(){
     Route::get('/', 'AppController@index');
-    Route::get('/files', 'AppController@listAllFiles');
     Route::get('/recent', 'AppController@recentlyEdited');
+    Route::get('/files', 'AppController@listAllFiles');
+
+    Route::post('/upload', 'FileController@uploadFiles');
+
+    // route is wild because returned value of file is storage path
+    Route::prefix('/file/storage/ftp/{owner}/{filename}')->group(function(){
+        Route::delete('/delete', 'FileController@deleteFile');
+    });
 });
+Auth::routes();
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
