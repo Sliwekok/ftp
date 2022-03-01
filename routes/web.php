@@ -20,11 +20,14 @@ Route::prefix('app')->group(function(){
     Route::get('/recent', 'AppController@recentlyEdited');
     Route::get('/files', 'AppController@listAllFiles');
 
+    Route::get('/downloadZip', 'FileController@downloadFiles');
+
     Route::post('/upload', 'FileController@uploadFiles');
 
     // route is wild because returned value of file is storage path
-    Route::prefix('/file/storage/ftp/{owner}/{filename}')->group(function(){
+    Route::prefix('file/storage/ftp/{owner}/{filename}')->group(function(){
         Route::delete('/delete', 'FileController@deleteFile');
+        Route::post('/rename', 'FileController@renameFile');
     });
 });
 Auth::routes();

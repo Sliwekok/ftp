@@ -57,7 +57,7 @@
                 <div class="row">
                     <nav id="topNav" class="col-12">
                         <div class="col-4"><span id="logo">StoreIt</span></div>
-                        <div class="col-4 offset-3" id="menuTop">
+                        <div class="col-4 offset-4" id="menuTop">
                             <div class="menuItem" id="upload"><i class="fontello icon-upload"></i>Upload</div>
                             <div class="menuItem"><i class="fontello icon-sort"></i>Sort</div>
                             <div class="menuItem"><i class="fontello icon-find"></i>Find</div>
@@ -74,23 +74,9 @@
 
         </div>
 
-        <div id="uploadForm">
-            @include('app.uploadForm')
-        </div>
+        @include('app.uploadForm')
 
-        <div class="alert col-6 offset-3 fade show" role="alert">
-            <div class="row">
-                <div class="col-10">
-                    <h4 class="alert-heading" id="alertHeader"></h4>
-                </div>
-                <div class="col-1 offset-1">
-                    <button type="button" class="btn-close" aria-label="Close"></button>
-                </div>
-            </div>
-            <div class="row">
-                <p class="mb-0" id="alertContent"></p>
-            </div>
-        </div>
+        @include('app.assets')
 
     </main>
 </div>

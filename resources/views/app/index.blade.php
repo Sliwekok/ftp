@@ -19,7 +19,7 @@
                     <div clas="row"><div class="col-12"><p><i class="icon icon-home"></i>All files</p></div></div>
                     @foreach($files as $file)
                         <div class="row">
-                            <div class="col-12 userFile">
+                            <div class="col-12 userFile" data-file-name="{{$file['name']}}" data-file-url="{{$file['url']}}">
                                 <div class="col-9 data">
                                     <a href="{{$file['url']}}" target="_blank"><img class="smallPreview" alt="User uploaded file" src="{{$file['url']}}">
                                     <span>{{$file['name']}}</span></a>
@@ -33,14 +33,13 @@
                                     <ul class="dropdown-menu">
                                         <li><span class="dropdown-item dropdownFileName"></span></li>
                                         <li><hr class="dropdown-divider"></li>
-                                        <li><span class="dropdown-item copy" data-file="{{$file['name']}}">Copy link</span></li>
-                                        <li><span class="dropdown-item" data-file="{{$file['name']}}">Share</span></li>
-                                        <li><span class="dropdown-item" data-file="{{$file['name']}}">Download</span></li>
+                                        <li><span class="dropdown-item" data-file-name="{{$file['name']}}" data-file-url="{{$file['url']}}">Share</span></li>
+                                        <li><a download href="{{$file['url']}}"><span class="dropdown-item">Download</span></a></li>
                                         <li><hr class="dropdown-divider"></li>
-                                        <li><span class="dropdown-item" data-function-call="renameFile" data-file="{{$file['name']}}">Rename</span></li>
-                                        <li><span class="dropdown-item" data-function-call="moveFile" data-file="{{$file['name']}}">Move To</span></li>
-                                        <li><span class="dropdown-item" data-function-call="addDescription" data-file="{{$file['name']}}">Description</span></li>
-                                        <li><span class="dropdown-item" data-function-call="" data-file="{{$file['name']}}">Delete</span></li>
+                                        <li><span class="dropdown-item openModal" data-file-name="{{$file['name']}}" data-action="rename" data-file-url="{{$file['url']}}">Rename</span></li>
+                                        <li><span class="dropdown-item openModal" data-file-name="{{$file['name']}}" data-action="moveFile" data-file-url="{{$file['url']}}">Move To</span></li>
+                                        <li><span class="dropdown-item openModal" data-file-name="{{$file['name']}}" data-action="addDescription" data-file-url="{{$file['url']}}">Description</span></li>
+                                        <li><span class="dropdown-item deleteFile" data-file-url="{{$file['url']}}">Delete</span></li>
                                     </ul>
                                 </div>
                             </div>

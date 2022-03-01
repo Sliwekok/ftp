@@ -95,6 +95,11 @@
             display: inline-flex;
             justify-content: baseline;
 
+            &.selected{
+                border: 1px solid rgba($info, 0.75);
+                background-color: darken(rgba($bg-color, 0.25), 5);
+            }
+
             .data{
                 a{
                     color: $font-color;
@@ -140,9 +145,18 @@
 
                 }
 
+                .date{
+                    display: inline-flex;
+                    font-size: 0.9rem;
+                }
+
                 .dropdown-menu{
+                    .dropdown-item{
+                        cursor: pointer;
+                    }
                     .dropdownFileName{
                         user-select: none;
+                        cursor: default;
                         &:hover{
                             background-color: inherit;
                         }

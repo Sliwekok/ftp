@@ -203,6 +203,11 @@ i {
   justify-content: baseline;
 }
 
+#appContainer #listedFiles .userFile.selected {
+  border: 1px solid rgba(104, 180, 255, 0.75);
+  background-color: rgba(75, 75, 75, 0.25);
+}
+
 #appContainer #listedFiles .userFile .data a {
   color: #ececec;
   text-decoration: none;
@@ -249,11 +254,21 @@ i {
   transform: rotate(90deg);
 }
 
+#appContainer #listedFiles .userFile .fileMenagment .date {
+  display: inline-flex;
+  font-size: 0.9rem;
+}
+
+#appContainer #listedFiles .userFile .fileMenagment .dropdown-menu .dropdown-item {
+  cursor: pointer;
+}
+
 #appContainer #listedFiles .userFile .fileMenagment .dropdown-menu .dropdownFileName {
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  cursor: default;
 }
 
 #appContainer #listedFiles .userFile .fileMenagment .dropdown-menu .dropdownFileName:hover {
@@ -322,7 +337,7 @@ i {
   padding: 1.5vh 2vh;
 }
 
-#uploadForm {
+.modal {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -332,7 +347,7 @@ i {
   background-color: rgba(63, 63, 63, 0.95);
 }
 
-#uploadForm #wrapper {
+.modal .wrapper {
   margin-top: 10vh;
   background-color: #323232;
   position: relative;
@@ -340,20 +355,20 @@ i {
   border-radius: 1.5%;
 }
 
-#uploadForm #wrapper #title {
+.modal .wrapper .title {
   background-color: #323232;
   display: inline-flex;
   color: #ececec;
   border-bottom: 1px white solid;
 }
 
-#uploadForm #wrapper #title #smallExit {
+.modal .wrapper .title .smallExit {
   cursor: pointer;
   color: #ff6868;
   text-align: center;
 }
 
-#uploadForm #wrapper #uploadForm {
+.modal .wrapper #uploader {
   background-color: #323232;
   padding: 2.5vh;
   display: block;
@@ -362,7 +377,7 @@ i {
   height: fit-content;
 }
 
-#uploadForm #wrapper #uploadForm ul#listFiles {
+.modal .wrapper #uploader ul#listFiles {
   list-style: none;
   display: none;
   font-size: 0.85rem;
@@ -371,34 +386,34 @@ i {
   margin-top: 2.5vh;
 }
 
-#uploadForm #wrapper #uploadForm ul#listFiles li {
+.modal .wrapper #uploader ul#listFiles li {
   padding: 0.65vh;
   margin: 0.25vh;
   display: inline-flex;
   vertical-align: text-bottom;
 }
 
-#uploadForm #wrapper #uploadForm ul#listFiles li span.fileSize {
+.modal .wrapper #uploader ul#listFiles li span.fileSize {
   color: lightgray;
   margin-left: 15px;
 }
 
-#uploadForm #wrapper #uploadForm ul#listFiles li:nth-child(2n) {
+.modal .wrapper #uploader ul#listFiles li:nth-child(2n) {
   background-color: #656565;
 }
 
-#uploadForm #wrapper #uploadForm ul#listFiles:last-child {
+.modal .wrapper #uploader ul#listFiles:last-child {
   border-bottom: 0px;
 }
 
-#uploadForm #wrapper #uploadForm label.labelFiles {
+.modal .wrapper #uploader label.labelFiles {
   height: 15vw;
   width: 15vw;
   margin: 10vh;
   margin-left: 25vw;
 }
 
-#uploadForm #wrapper #uploadForm #boxShaped {
+.modal .wrapper #uploader #boxShaped {
   border: 2px dashed lightgray;
   height: 100%;
   width: 100%;
@@ -406,7 +421,7 @@ i {
   cursor: pointer;
 }
 
-#uploadForm #wrapper #uploadForm #boxShaped i {
+.modal .wrapper #uploader #boxShaped i {
   font-size: 5rem;
   text-align: center;
   width: 100%;
@@ -415,17 +430,17 @@ i {
   margin-top: 25%;
 }
 
-#uploadForm #wrapper #uploadForm #uploadButton {
+.modal .wrapper #uploader #uploadButton {
   position: absolute;
   opacity: 0;
   z-index: -1;
 }
 
-#uploadForm #wrapper #uploadForm #selectGroup {
+.modal .wrapper #uploader #selectGroup {
   display: inline-flex;
 }
 
-#uploadForm #wrapper #uploadForm #selectGroup .selectFilesButtons {
+.modal .wrapper #uploader #selectGroup .selectFilesButtons {
   cursor: pointer;
   transition: background-color 0.2s ease;
   text-align: center;
@@ -441,27 +456,71 @@ i {
   font-weight: 500 !important;
 }
 
-#uploadForm #wrapper #uploadForm #selectGroup .selectFilesButtons label {
+.modal .wrapper #uploader #selectGroup .selectFilesButtons label {
   cursor: pointer;
   width: 100%;
   height: 100%;
   padding-top: 0.75vh;
 }
 
-#uploadForm #wrapper #uploadForm #selectGroup .selectFilesButtons:hover {
+.modal .wrapper #uploader #selectGroup .selectFilesButtons:hover {
   background-color: #727272;
 }
 
-#uploadForm #wrapper #uploadForm #selectGroup #addFolder i#checkerFolder {
+.modal .wrapper #uploader #selectGroup #addFolder i#checkerFolder {
   margin: 0px;
   visibility: hidden;
 }
 
-#uploadForm #wrapper #uploadForm #selectGroup #addFolder #checkedBorder {
+.modal .wrapper #uploader #selectGroup #addFolder #checkedBorder {
   border: 1px white solid;
 }
 
-#uploadForm #wrapper #uploadForm #selectGroup #addFolder #checkedBorder i {
+.modal .wrapper #uploader #selectGroup #addFolder #checkedBorder i {
   color: #8eff5a;
+}
+
+#rename .modalBody {
+  padding: 2.5vh;
+}
+
+#rename .modalBody p.blockquote-footer {
+  margin-top: 1vh;
+}
+
+#rename .modalBody button {
+  margin-top: 1vh;
+}
+
+#downloadButton {
+  display: none !important;
+  position: absolute;
+  bottom: 50px;
+  left: 75px;
+  border-radius: 0.5rem;
+  display: flex;
+  background-color: #323232;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 2.25vh;
+  text-align: center;
+  justify-content: baseline;
+}
+
+#downloadButton p {
+  cursor: pointer;
+  transition: color 0.1s linear;
+}
+
+#downloadButton p.zipped {
+  display: none;
+}
+
+#downloadButton p a:hover {
+  color: #68b4ff;
 }
 

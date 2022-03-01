@@ -1,0 +1,40 @@
+#rename{
+    .modalBody{
+        padding: 2.5vh;
+
+        p.blockquote-footer{
+            margin-top: 1vh;
+        }
+
+        button{
+            margin-top: 1vh;
+        }
+    }
+}
+
+#downloadButton{
+    display: none !important;
+    position: absolute;
+    bottom: 50px;
+    left: 75px;
+    border-radius: 0.5rem;
+    display: flex;
+    background-color: darken($bg-color, 15);
+    width: fit-content;
+    height: fit-content;
+    padding: 2.25vh;
+    text-align: center;
+    justify-content: baseline;
+    p{
+        cursor: pointer;
+        transition: color  0.1s linear;
+
+        &.zipped{
+            display: none;
+        }
+
+        a:hover{
+            color: $info;
+        }
+    }
+}
