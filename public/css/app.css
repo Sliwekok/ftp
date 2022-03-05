@@ -377,6 +377,13 @@ i {
   height: fit-content;
 }
 
+.modal .wrapper #uploader .error {
+  color: #ff6868;
+  width: 100%;
+  text-align: center;
+  padding-bottom: 1vh;
+}
+
 .modal .wrapper #uploader ul#listFiles {
   list-style: none;
   display: none;

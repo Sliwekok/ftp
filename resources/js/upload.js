@@ -14,4 +14,7 @@ $(document).on('click', '#addFolder', function(e){
     return;
 })
 
-
+// add fake progress bar to prevent user from leaving 
+$(document).on("submit", '#uploadedFiles', function(){ 
+    
+});

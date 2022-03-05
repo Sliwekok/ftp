@@ -43,7 +43,7 @@ export function getFixFileSize(size){
     return newSize + sizes[count];
 }
 // on ready, fix size of files to correct measure
-export function fixSizeOfFiles(){
+function fixSizeOfFiles(){
     $(".userFile").each(function () {
         var size = $(this).find('.fileSize').text(),
         fixed = getFixFileSize(size);
@@ -51,7 +51,7 @@ export function fixSizeOfFiles(){
     });
     return;
 };
-fixSizeOfFiles();
+window.onload = fixSizeOfFiles();
 
 // show alert with return message from server
 export function showAlert(data){
@@ -158,7 +158,7 @@ $(document).on('click', '.deleteFile', function(){
 
 
 export function deleteFile(file){
-    var url = '/app/file' + file + '/delete';
+    var url = 'app' + file + '/delete';
     $.ajax({
         url: url,
         headers: {
@@ -183,21 +183,20 @@ export function deleteFile(file){
 $(document).on('click', ".openModal", function(){
     var action  = $(this).data('action'),
         fileUrl = $(this).data('file-url'),
-        fileName= $(this).data('file-name');
-
-    fileUrl = 'app/file' + fileUrl + "/rename";
-    switch(action){
-        case 'rename':
-            openRename(fileName, fileUrl);
-            break;
-        case 'moveFile':
-            openMoveFile(fileName, fileUrl);
-            break;
-        case 'addDescription':
-            openAddDescription(fileName, fileUrl);
-            break
-        default:
-            break;
+        fileName= $(this).data('file-name'),
+        fileUrl = 'app' + fileUrl + "/" + action;
+        switch(action){
+            case 'rename':
+                openRename(fileName, fileUrl);
+                break;
+            case 'moveFile':
+                openMoveFile(fileName, fileUrl);
+                break;
+            case 'addDescription':
+                openAddDescription(fileName, fileUrl);
+                break
+            default:
+                break;
     }
     return;
 })
@@ -244,11 +243,12 @@ $(document).on('change', "#uploadButton", function(){
     const input = document.querySelector('#uploadButton');
     $(document).ready(function(){
         if(input.files.length > 0) {
+            // show uploaded files as list
             $("#uploadButtonHoveringUpload").hide(0);
             var list = $("#listFiles");
             list.show(0);
-            
-            for (var i = 0; i < input.files.length; i++) {
+            // go through every file in form
+            for(var i = 0; i < input.files.length; i++) {
                 var file = input.files[i],
                     name = file.name,
                     size = getFixFileSize(file.size);  

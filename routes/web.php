@@ -25,7 +25,7 @@ Route::prefix('app')->group(function(){
     Route::post('/upload', 'FileController@uploadFiles');
 
     // route is wild because returned value of file is storage path
-    Route::prefix('file/storage/ftp/{owner}/{filename}')->group(function(){
+    Route::prefix('storage/ftp/{owner}/{filename}')->group(function(){
         Route::delete('/delete', 'FileController@deleteFile');
         Route::post('/rename', 'FileController@renameFile');
     });

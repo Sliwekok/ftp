@@ -3,21 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
-use zipArchive;
+use Zip;
+use ZanySoft\Zip\ZipManager;
 
 class FileController extends Controller
 {
 
     /**
      * All the magic when comes to file manegment is happening here
-     * uploading, deleting, renaming etc
-     * normally, after the controller job is done it redirects request to AppController 
-     *      to show updated state, but there are some exceptions like deleting
+     * uploading, deleting, renaming, zipping (wip) 
      */
 
     public function uploadFiles(Request $request){
@@ -41,7 +39,7 @@ class FileController extends Controller
         // go through all files uploaded
         foreach($files as $file){
             // static path 
-            $path = 'public/ftp/'.Session::get('token');
+            $path = $this->userPath();
             $name = $file->getClientOriginalName();
 
             // create hash for file, something like id 
@@ -80,13 +78,13 @@ class FileController extends Controller
             $alert = $this->alert('error', 'Error occured', "You can't delete other users file");
             return $alert;
         }
-        $path = 'public/ftp/'.$owner.'/'.$filename;
+        $path = $this->userPath();
         if(!Storage::exists($path)){
             $alert = $this->alert('error', 'Error occured', "File wasn't found");
             return $alert;
         }
         else{
-            $storage = Storage::delete($path);
+            $storage = Storage::delete($path.$filename);
             $query   = DB::table('files')->where('owner', $owner)->where('name', $filename)->delete();   
             if($storage && $query){
                 $alert = $this->alert('success', 'File deleted', "Successfully deleted file");
@@ -118,19 +116,26 @@ class FileController extends Controller
 
         $newFilename = $request->input('newFilename');
         $query = DB::table('files')->where('owner', $owner)->where('name', $filename)->update(['name' => $newFilename]);
-        $path = 'public/ftp/'.$owner.'/';
+        $path =  $this->userPath();
 
         // some validation
         if(!Storage::exists($path.$filename)){
             $alert = $this->alert('error', 'Error occured', "File wasn't found");
             return $alert;
         }
+        // check if new name is the same as old filename
+        if($newFilename == $filename){
+            $alert = $this->alert('error', 'Error occured', "New filename must be different than before");
+            return $alert;
+        }
+        // check if sql query works
         if(!$query){
             $alert = $this->alert('error', 'Error occured', "Server error");
             return $alert;
         }
+        // check if storage function successfully renamed file 
         if(!Storage::rename($path.$filename, $path.$newFilename)){
-            $alert = $this->alert('error', 'Error occured', "Server error");
+            $alert = $this->alert('error', 'Error occured', "Can't rename file");
             return $alert;
         }
 
@@ -142,51 +147,56 @@ class FileController extends Controller
     // request is an array - [0] means file url, [1] means filename
     public function downloadFiles(Request $request){
         $files = $request->input('files');
-        $zip = new ZipArchive();
         $zipName = 'StoreIt.zip';
-        $path = "public/ftp/".Session::get('token')."/";
-        $open = $zip->open($path . $zipName, ZipArchive::CREATE | ZipArchive::OVERWRITE);
+        $path = $this->userPath();
+        // check if zip file exists, if not, create it
+        if(Storage::missing($path. $zipName)) if(!Zip::create($path."test.zip", true)) return "błąd";
 
-        // fix absolute path to relative in user files, to be able to select user custom directories
-        $fixRelativePath = function ($url){
-            $file = $url[0];
-            $string = '/storage';
-            // return str_replace($string, '', $file);
-            $file = ltrim($file, $string);
-            return '/public'.$file;
-        };
-        $fixedFiles = array_map($fixRelativePath, $files);
+        $zip = Zip::open(storage_path('app'. $path . $zipName));
 
-        // check if can create zip file
-        if($open){
-            // loop through all requested files
-            foreach($fixRelativePath as $file){
-                $filepath = $file[0];
-                $filename = $file[1];
-                $zip->addFile(Storage::get($filepath), $filename);
+        // trim everything in zip, to not re-downloading the same staff
+        $zippedPreviously =  $zip->listFiles();
+        foreach($zippedPreviously as $file){
+            $zip->delete($file);
+        }
+        // add each selected file from array to zip file
+        foreach($files as $file){
+            // remove storage in path, since it's already in storage directory when using Storage
+            $filepath = ltrim($file[0], "/storage");
+            $filename = $file[1];
+            if(Storage::missing($filepath)){
+                $alert = $this->alert('error', 'Error occured', "File not found");
+                return $alert;
+            }
+            // set path for user and add files
+            if(!$zip->setPath("storage". $path)->add($filename)){
+                $alert = $this->alert('error', 'Error occured', "Error while archiving file");
+                return $alert;
             }
         }
-        else{
-            $alert = $this->alert('error', 'Error occured', "Couldn't create archive file");
-            return $alert;
-        }
-        // it needs to be silenced, bc it gives error there's no zip initialized, idk why tho
-        @$zip->close();
-        $downloadUrl = Storage::url($path.$zipName);
-        return $downloadUrl;
-    }
 
+        $zip->close();
+
+        $downloadUrl = Storage::url($path. $zipName);
+        return $downloadUrl;
+
+    }
     // funciton to return error message (but not always)
     // extends blade layout alert and js showAlert()
     // params:  status error/success 
     //          header as main message
     //          message - longer information about information
     private function alert($status, $header, $message){
-        $info = array(
+        $info = [
             'status'    => $status,
             'header'    => $header,
             'message'   => $message
-        );
+        ];
         return $info;
+    }
+
+    // return user directory path 
+    private function userPath(){
+        return "/ftp/".Session::get('token')."/";
     }
 }

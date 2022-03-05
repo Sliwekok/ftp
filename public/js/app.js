@@ -106,14 +106,13 @@ __webpack_require__(/*! ./fileMenagment */ "./resources/js/fileMenagment.js"); /
 /*!*************************************!*\
   !*** ./resources/js/application.js ***!
   \*************************************/
-/*! exports provided: refreshContent, getFixFileSize, fixSizeOfFiles, showAlert, closeModal, deleteFile, openRename */
+/*! exports provided: refreshContent, getFixFileSize, showAlert, closeModal, deleteFile, openRename */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "refreshContent", function() { return refreshContent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getFixFileSize", function() { return getFixFileSize; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fixSizeOfFiles", function() { return fixSizeOfFiles; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "showAlert", function() { return showAlert; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "closeModal", function() { return closeModal; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteFile", function() { return deleteFile; });
@@ -167,8 +166,9 @@ function fixSizeOfFiles() {
   });
   return;
 }
+
 ;
-fixSizeOfFiles(); // show alert with return message from server
+window.onload = fixSizeOfFiles(); // show alert with return message from server
 
 function showAlert(data) {
   var state = data['status'],
@@ -262,7 +262,7 @@ $(document).on('click', '.deleteFile', function () {
 }); // FILE MENAGMENT
 
 function deleteFile(file) {
-  var url = '/app/file' + file + '/delete';
+  var url = 'app' + file + '/delete';
   $.ajax({
     url: url,
     headers: {
@@ -286,8 +286,8 @@ function deleteFile(file) {
 $(document).on('click', ".openModal", function () {
   var action = $(this).data('action'),
       fileUrl = $(this).data('file-url'),
-      fileName = $(this).data('file-name');
-  fileUrl = 'app/file' + fileUrl + "/rename";
+      fileName = $(this).data('file-name'),
+      fileUrl = 'app' + fileUrl + "/" + action;
 
   switch (action) {
     case 'rename':
@@ -346,9 +346,10 @@ $(document).on('change', "#uploadButton", function () {
   var input = document.querySelector('#uploadButton');
   $(document).ready(function () {
     if (input.files.length > 0) {
+      // show uploaded files as list
       $("#uploadButtonHoveringUpload").hide(0);
       var list = $("#listFiles");
-      list.show(0);
+      list.show(0); // go through every file in form
 
       for (var i = 0; i < input.files.length; i++) {
         var file = input.files[i],
@@ -464,15 +465,15 @@ $(document).on("click", "#zipper", function () {
       return false;
     },
     success: function success(data) {
-      if (data instanceof Array) {
+      if (data instanceof Object) {
         showAlert(data);
-        console.log(data);
       } else {
         $("#zipper").hide(0);
         $("#zipped").show(0);
         $("#zipped a").attr("href", data).click();
       }
 
+      console.log(data);
       return true;
     }
   });

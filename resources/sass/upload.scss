@@ -33,6 +33,14 @@
             display: block;
             height: fit-content;
 
+            .error{
+                color: $error;
+                width: 100%;
+                text-align: center;
+                // display: none; 
+                padding-bottom: 1vh;
+            }
+
             ul#listFiles{
                 list-style: none;
                 display: none;

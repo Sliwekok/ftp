@@ -19,8 +19,11 @@
                                         <label class="labelFiles" for="uploadButton" id="uploadButtonHoveringUpload"><div id="boxShaped"><i class="icon icon-plus"></i></div></label>
                                         <ul class="col-12" id="listFiles"></ul>
                                     </div>
-                                    {{-- here is input that will be displayed under, but working (theoretically) --}}
+                                    {{-- here is input that will be displayed under, but is functional --}}
                                     <input id="uploadButton" type="file" name="files[]" multiple required>
+                                    <div class="row">
+                                        <span class="error" id="errorServerName"> @if(isset($errorMessage))<h2>Error occured!</h2> {{$errorMessage}} @endif</span>
+                                    </div>
                                     <div class="row">
                                         <div class="col-12" id="selectGroup">
                                             <div class="col-3 selectFilesButtons" id="addFolder" title="If checked, you can select to upload whole folder with all files within.">
@@ -34,6 +37,14 @@
                                             </div>
                                             <div class="col-2">
                                                 <input type="submit" class="btn btn-outline-primary disabled submit" title="Begin uploading" value="Upload">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6 offset-3" id="progress">
+                                            <p><h2>Wait untill files will fully upload...</h2></p>
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                         </div>
                                     </div>

@@ -79,15 +79,15 @@ $(document).on("click", "#zipper", function(){
             return false;
         },
         success: function(data){
-            if(data instanceof Array){
+            if(data instanceof Object){
                 showAlert(data);
-                console.log(data);
             }
             else{
                 $("#zipper").hide(0);
                 $("#zipped").show(0);
                 $("#zipped a").attr("href", data).click();
             }
+            console.log(data);
             return true;
         }
     });

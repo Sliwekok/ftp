@@ -19,7 +19,7 @@ class AppController extends Controller
      * Every function here should be returning array of files (or whatever should be)
      * that file doesn' work with files menagment - it's FileController job.
      */
-
+    
 
     public function index(Request $request){
         
@@ -27,7 +27,7 @@ class AppController extends Controller
         if(!Auth::check() && !Session::has('token')){
             $token = $this->createToken($request);
             Session::put('token', $token);
-            if(!$this->createDirectory($token)){
+            if(!$this->createDirectory()){
                 return "Error while creating a file";
             }
         }
@@ -41,19 +41,23 @@ class AppController extends Controller
 
     
     public function listAllFiles(){
-        $path = "public/ftp/".Session::get('token');
+        $path = $this->userPath();
         $allFiles = Storage::files($path);
         $files = [];
         $i = 0;
         foreach($allFiles as $file){
+            // if it's super zip file, skip;
+            if(basename($file) == 'StoreIt.zip') continue;
             $i++;
             $query = DB::table('files')->where( 'owner', Session::get('token' ))->where( 'name', basename($file) )->first();
             $files += [
                 "$i" => [
                     'name'       => basename($file),
                     'url'        => Storage::url($file),
-                    'lastMod'    => $query->updated_at,
-                    'description'=> $query->description,
+                    // 'lastMod'    => $query->updated_at,
+                    // 'description'=> $query->description,
+                    'lastMod'    => "updated_at",
+                    'description'=> "description",
                     'size'       => Storage::size($file),
                     'ext'        => Storage::mimeType($file),
                 ]
@@ -71,7 +75,7 @@ class AppController extends Controller
      * Create token for unregistered users. It's based on:
      *      exp time: 14 days (2 weeks) from last action
      *      IP
-     *      hash made of IP and created_at
+     *      hash made of IP and created_at, made via md5 since it's only supposed to be unique
      */
     private function createToken($request){
         $time = Carbon::now();
@@ -81,18 +85,31 @@ class AppController extends Controller
         return $hash;
     }
     /**
-     * Create directory for users. It's based on:'
+     * Create directory for users. It's based on:
      *      name: if user is logged, just username, if not - hash
+     * And anyway - it's created upon file uploading
+     * It also copies zip file, cuz it has some read problems while creating
      */
-    private function createDirectory($name){
-        $path = "ftp/$name";
+    private function createDirectory(){
+        $path = $this->userPath();
 
-        if(Storage::makeDirectory($path)){
-            return true;
+        if(Storage::makeDirectory($path, 0777)){
+            // return true;
+            if(Storage::copy("StoreIt.zip", $path."StoreIt.zip")){
+                return true;
+            }
+            else{
+                return false;
+            }
         }
         else{
             return false;
         }
+    }
+
+    // return user directory path 
+    private function userPath(){
+        return "/ftp/".Session::get('token')."/";
     }
     
 }
