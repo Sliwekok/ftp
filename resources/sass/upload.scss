@@ -37,7 +37,6 @@
                 color: $error;
                 width: 100%;
                 text-align: center;
-                // display: none; 
                 padding-bottom: 1vh;
             }
 
@@ -140,6 +139,11 @@
                     }
                 }
 
+            }
+            #progress{
+                display: none;
+                padding: 3.5vh;
+                text-align: center;
             }
         }
 

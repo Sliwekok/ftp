@@ -1,0 +1,181 @@
+Date : 2022-03-22 22:35:52
+Directory : c:\Programy\Laragon\laragon\www\ftp
+Total : 108 files,  36387 codes, 1609 comments, 1097 blanks, all 39093 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| JSON       |          6 |     31,214 |          0 |          5 |     31,219 |
+| PHP        |         75 |      2,360 |      1,365 |        668 |      4,393 |
+| JavaScript |          8 |      1,102 |        161 |        149 |      1,412 |
+| CSS        |          7 |        809 |         70 |        148 |      1,027 |
+| SCSS       |          5 |        533 |         12 |         80 |        625 |
+| HTML       |          2 |        273 |          1 |         11 |        285 |
+| XML        |          3 |         83 |          0 |         34 |        117 |
+| YAML       |          1 |         13 |          0 |          1 |         14 |
+| Markdown   |          1 |          0 |          0 |          1 |          1 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                       | files      | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                          |        108 |     36,387 |      1,609 |      1,097 |     39,093 |
+| app                                                                                                        |         27 |        775 |        421 |        219 |      1,415 |
+| app\Console                                                                                                |          1 |         17 |         18 |          7 |         42 |
+| app\Exceptions                                                                                             |          1 |         21 |         28 |          7 |         56 |
+| app\Http                                                                                                   |         19 |        633 |        282 |        164 |      1,079 |
+| app\Http\Controllers                                                                                       |         11 |        523 |        215 |        127 |        865 |
+| app\Http\Controllers\Auth                                                                                  |          6 |         95 |        117 |         41 |        253 |
+| app\Http\Middleware                                                                                        |          7 |         70 |         47 |         30 |        147 |
+| app\Providers                                                                                              |          5 |         86 |         78 |         34 |        198 |
+| bootstrap                                                                                                  |          1 |         17 |         30 |          9 |         56 |
+| config                                                                                                     |         14 |        510 |        683 |        224 |      1,417 |
+| database                                                                                                   |          7 |        132 |         67 |         28 |        227 |
+| database\factories                                                                                         |          1 |         13 |         11 |          5 |         29 |
+| database\migrations                                                                                        |          5 |        111 |         50 |         20 |        181 |
+| database\seeds                                                                                             |          1 |          8 |          6 |          3 |         17 |
+| public                                                                                                     |          5 |      1,229 |        128 |        244 |      1,601 |
+| public\css                                                                                                 |          1 |        588 |         24 |        115 |        727 |
+| public\fonts                                                                                               |          1 |         27 |          0 |         16 |         43 |
+| public\js                                                                                                  |          1 |        600 |         65 |        100 |        765 |
+| resources                                                                                                  |         35 |      2,471 |        178 |        317 |      2,966 |
+| resources\js                                                                                               |          5 |        494 |         59 |         47 |        600 |
+| resources\lang                                                                                             |          4 |        131 |         60 |         24 |        215 |
+| resources\lang\en                                                                                          |          4 |        131 |         60 |         24 |        215 |
+| resources\sass                                                                                             |         14 |      1,148 |         59 |        139 |      1,346 |
+| resources\sass\fontello                                                                                    |          9 |        615 |         47 |         59 |        721 |
+| resources\sass\fontello\css                                                                                |          6 |        221 |         46 |         33 |        300 |
+| resources\sass\fontello\font                                                                               |          1 |         27 |          0 |         16 |         43 |
+| resources\views                                                                                            |         12 |        698 |          0 |        107 |        805 |
+| resources\views\app                                                                                        |          3 |        332 |          0 |         21 |        353 |
+| resources\views\auth                                                                                       |          6 |        284 |          0 |         64 |        348 |
+| resources\views\auth\passwords                                                                             |          3 |        134 |          0 |         30 |        164 |
+| resources\views\home                                                                                       |          2 |         48 |          0 |         13 |         61 |
+| resources\views\layouts                                                                                    |          1 |         34 |          0 |          9 |         43 |
+| routes                                                                                                     |          4 |         38 |         41 |         21 |        100 |
+| tests                                                                                                      |          4 |         41 |         15 |         19 |         75 |
+| tests\Feature                                                                                              |          1 |         12 |          5 |          5 |         22 |
+| tests\Unit                                                                                                 |          1 |         10 |          5 |          4 |         19 |
+| vendor                                                                                                     |          2 |         17 |         27 |          1 |         45 |
+| vendor\facade                                                                                              |          2 |         17 |         27 |          1 |         45 |
+| vendor\facade\ignition                                                                                     |          2 |         17 |         27 |          1 |         45 |
+| vendor\facade\ignition\resources                                                                           |          2 |         17 |         27 |          1 |         45 |
+| vendor\facade\ignition\resources\compiled                                                                  |          2 |         17 |         27 |          1 |         45 |
++------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                                                   | language   | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| c:\Programy\Laragon\laragon\www\ftp\.styleci.yml                                                           | YAML       |         13 |          0 |          1 |         14 |
+| c:\Programy\Laragon\laragon\www\ftp\README.md                                                              | Markdown   |          0 |          0 |          1 |          1 |
+| c:\Programy\Laragon\laragon\www\ftp\app\Console\Kernel.php                                                 | PHP        |         17 |         18 |          7 |         42 |
+| c:\Programy\Laragon\laragon\www\ftp\app\Exceptions\Handler.php                                             | PHP        |         21 |         28 |          7 |         56 |
+| c:\Programy\Laragon\laragon\www\ftp\app\Http\Controllers\AppController.php                                 | PHP        |        210 |         53 |         34 |        297 |
+| c:\Programy\Laragon\laragon\www\ftp\app\Http\Controllers\Auth\ConfirmPasswordController.php                | PHP        |         14 |         20 |          7 |         41 |
+| c:\Programy\Laragon\laragon\www\ftp\app\Http\Controllers\Auth\ForgotPasswordController.php                 | PHP        |          8 |         10 |          5 |         23 |
+| c:\Programy\Laragon\laragon\www\ftp\app\Http\Controllers\Auth\LoginController.php                          | PHP        |         14 |         20 |          7 |         41 |
+| c:\Programy\Laragon\laragon\www\ftp\app\Http\Controllers\Auth\RegisterController.php                       | PHP        |         33 |         32 |          9 |         74 |
+| c:\Programy\Laragon\laragon\www\ftp\app\Http\Controllers\Auth\ResetPasswordController.php                  | PHP        |         10 |         15 |          6 |         31 |
+| c:\Programy\Laragon\laragon\www\ftp\app\Http\Controllers\Auth\VerificationController.php                   | PHP        |         16 |         20 |          7 |         43 |
+| c:\Programy\Laragon\laragon\www\ftp\app\Http\Controllers\Controller.php                                    | PHP        |         10 |          0 |          4 |         14 |
+| c:\Programy\Laragon\laragon\www\ftp\app\Http\Controllers\DirectoryController.php                           | PHP        |         60 |         10 |         14 |         84 |
+| c:\Programy\Laragon\laragon\www\ftp\app\Http\Controllers\FileController.php                                | PHP        |        139 |         35 |         27 |        201 |
+| c:\Programy\Laragon\laragon\www\ftp\app\Http\Controllers\HomeController.php                                | PHP        |          9 |          0 |          7 |         16 |
+| c:\Programy\Laragon\laragon\www\ftp\app\Http\Kernel.php                                                    | PHP        |         40 |         20 |          7 |         67 |
+| c:\Programy\Laragon\laragon\www\ftp\app\Http\Middleware\Authenticate.php                                   | PHP        |         12 |          6 |          4 |         22 |
+| c:\Programy\Laragon\laragon\www\ftp\app\Http\Middleware\CheckForMaintenanceMode.php                        | PHP        |          8 |          6 |          4 |         18 |
+| c:\Programy\Laragon\laragon\www\ftp\app\Http\Middleware\EncryptCookies.php                                 | PHP        |          8 |          6 |          4 |         18 |
+| c:\Programy\Laragon\laragon\www\ftp\app\Http\Middleware\RedirectIfAuthenticated.php                        | PHP        |         15 |          8 |          5 |         28 |
+| c:\Programy\Laragon\laragon\www\ftp\app\Http\Middleware\TrimStrings.php                                    | PHP        |         10 |          5 |          4 |         19 |
+| c:\Programy\Laragon\laragon\www\ftp\app\Http\Middleware\TrustProxies.php                                   | PHP        |          9 |         10 |          5 |         24 |
+| c:\Programy\Laragon\laragon\www\ftp\app\Http\Middleware\VerifyCsrfToken.php                                | PHP        |          8 |          6 |          4 |         18 |
+| c:\Programy\Laragon\laragon\www\ftp\app\Providers\AppServiceProvider.php                                   | PHP        |         12 |         12 |          5 |         29 |
+| c:\Programy\Laragon\laragon\www\ftp\app\Providers\AuthServiceProvider.php                                  | PHP        |         13 |         12 |          6 |         31 |
+| c:\Programy\Laragon\laragon\www\ftp\app\Providers\BroadcastServiceProvider.php                             | PHP        |         12 |          5 |          5 |         22 |
+| c:\Programy\Laragon\laragon\www\ftp\app\Providers\EventServiceProvider.php                                 | PHP        |         18 |         11 |          6 |         35 |
+| c:\Programy\Laragon\laragon\www\ftp\app\Providers\RouteServiceProvider.php                                 | PHP        |         31 |         38 |         12 |         81 |
+| c:\Programy\Laragon\laragon\www\ftp\app\User.php                                                           | PHP        |         18 |         15 |          7 |         40 |
+| c:\Programy\Laragon\laragon\www\ftp\bootstrap\app.php                                                      | PHP        |         17 |         30 |          9 |         56 |
+| c:\Programy\Laragon\laragon\www\ftp\composer.json                                                          | JSON       |         65 |          0 |          1 |         66 |
+| c:\Programy\Laragon\laragon\www\ftp\composer.lock                                                          | JSON       |      7,075 |          0 |          1 |      7,076 |
+| c:\Programy\Laragon\laragon\www\ftp\config\app.php                                                         | PHP        |         82 |        120 |         33 |        235 |
+| c:\Programy\Laragon\laragon\www\ftp\config\auth.php                                                        | PHP        |         33 |         70 |         15 |        118 |
+| c:\Programy\Laragon\laragon\www\ftp\config\broadcasting.php                                                | PHP        |         26 |         22 |         12 |         60 |
+| c:\Programy\Laragon\laragon\www\ftp\config\cache.php                                                       | PHP        |         52 |         34 |         18 |        104 |
+| c:\Programy\Laragon\laragon\www\ftp\config\cors.php                                                        | PHP        |          3 |         29 |          3 |         35 |
+| c:\Programy\Laragon\laragon\www\ftp\config\database.php                                                    | PHP        |         81 |         45 |         22 |        148 |
+| c:\Programy\Laragon\laragon\www\ftp\config\filesystems.php                                                 | PHP        |         28 |         42 |         15 |         85 |
+| c:\Programy\Laragon\laragon\www\ftp\config\hashing.php                                                     | PHP        |         12 |         32 |          9 |         53 |
+| c:\Programy\Laragon\laragon\www\ftp\config\logging.php                                                     | PHP        |         64 |         24 |         17 |        105 |
+| c:\Programy\Laragon\laragon\www\ftp\config\mail.php                                                        | PHP        |         38 |         47 |         16 |        101 |
+| c:\Programy\Laragon\laragon\www\ftp\config\queue.php                                                       | PHP        |         42 |         32 |         15 |         89 |
+| c:\Programy\Laragon\laragon\www\ftp\config\services.php                                                    | PHP        |         16 |         11 |          7 |         34 |
+| c:\Programy\Laragon\laragon\www\ftp\config\session.php                                                     | PHP        |         22 |        145 |         33 |        200 |
+| c:\Programy\Laragon\laragon\www\ftp\config\view.php                                                        | PHP        |         11 |         30 |          9 |         50 |
+| c:\Programy\Laragon\laragon\www\ftp\database\factories\UserFactory.php                                     | PHP        |         13 |         11 |          5 |         29 |
+| c:\Programy\Laragon\laragon\www\ftp\database\migrations\2014_10_12_000000_create_users_table.php           | PHP        |         23 |         10 |          4 |         37 |
+| c:\Programy\Laragon\laragon\www\ftp\database\migrations\2014_10_12_100000_create_password_resets_table.php | PHP        |         19 |         10 |          4 |         33 |
+| c:\Programy\Laragon\laragon\www\ftp\database\migrations\2019_08_19_000000_create_failed_jobs_table.php     | PHP        |         22 |         10 |          4 |         36 |
+| c:\Programy\Laragon\laragon\www\ftp\database\migrations\2022_02_17_085804_files.php                        | PHP        |         24 |         10 |          4 |         38 |
+| c:\Programy\Laragon\laragon\www\ftp\database\migrations\2022_03_16_110714_directories.php                  | PHP        |         23 |         10 |          4 |         37 |
+| c:\Programy\Laragon\laragon\www\ftp\database\seeds\DatabaseSeeder.php                                      | PHP        |          8 |          6 |          3 |         17 |
+| c:\Programy\Laragon\laragon\www\ftp\package-lock.json                                                      | JSON       |     23,935 |          0 |          1 |     23,936 |
+| c:\Programy\Laragon\laragon\www\ftp\package.json                                                           | JSON       |         29 |          0 |          1 |         30 |
+| c:\Programy\Laragon\laragon\www\ftp\phpunit.xml                                                            | XML        |         29 |          0 |          2 |         31 |
+| c:\Programy\Laragon\laragon\www\ftp\public\css\app.css                                                     | CSS        |        588 |         24 |        115 |        727 |
+| c:\Programy\Laragon\laragon\www\ftp\public\fonts\fontello.svg                                              | XML        |         27 |          0 |         16 |         43 |
+| c:\Programy\Laragon\laragon\www\ftp\public\index.php                                                       | PHP        |         10 |         39 |         12 |         61 |
+| c:\Programy\Laragon\laragon\www\ftp\public\js\app.js                                                       | JavaScript |        600 |         65 |        100 |        765 |
+| c:\Programy\Laragon\laragon\www\ftp\public\mix-manifest.json                                               | JSON       |          4 |          0 |          1 |          5 |
+| c:\Programy\Laragon\laragon\www\ftp\resources\js\app.js                                                    | JavaScript |          4 |          2 |          1 |          7 |
+| c:\Programy\Laragon\laragon\www\ftp\resources\js\application.js                                            | JavaScript |         79 |          9 |         10 |         98 |
+| c:\Programy\Laragon\laragon\www\ftp\resources\js\assets.js                                                 | JavaScript |        114 |         16 |         14 |        144 |
+| c:\Programy\Laragon\laragon\www\ftp\resources\js\fileMenagment.js                                          | JavaScript |        200 |         19 |         15 |        234 |
+| c:\Programy\Laragon\laragon\www\ftp\resources\js\upload.js                                                 | JavaScript |         97 |         13 |          7 |        117 |
+| c:\Programy\Laragon\laragon\www\ftp\resources\lang\en\auth.php                                             | PHP        |          5 |         10 |          5 |         20 |
+| c:\Programy\Laragon\laragon\www\ftp\resources\lang\en\pagination.php                                       | PHP        |          5 |         10 |          5 |         20 |
+| c:\Programy\Laragon\laragon\www\ftp\resources\lang\en\passwords.php                                        | PHP        |          8 |         10 |          5 |         23 |
+| c:\Programy\Laragon\laragon\www\ftp\resources\lang\en\validation.php                                       | PHP        |        113 |         30 |          9 |        152 |
+| c:\Programy\Laragon\laragon\www\ftp\resources\sass\app.scss                                                | SCSS       |         32 |          5 |          5 |         42 |
+| c:\Programy\Laragon\laragon\www\ftp\resources\sass\application.scss                                        | SCSS       |        252 |          7 |         36 |        295 |
+| c:\Programy\Laragon\laragon\www\ftp\resources\sass\assets.scss                                             | SCSS       |         68 |          0 |         11 |         79 |
+| c:\Programy\Laragon\laragon\www\ftp\resources\sass\fontello\config.json                                    | JSON       |        106 |          0 |          0 |        106 |
+| c:\Programy\Laragon\laragon\www\ftp\resources\sass\fontello\css\animation.css                              | CSS        |         77 |          3 |          6 |         86 |
+| c:\Programy\Laragon\laragon\www\ftp\resources\sass\fontello\css\fontello-codes.css                         | CSS        |         16 |          0 |          2 |         18 |
+| c:\Programy\Laragon\laragon\www\ftp\resources\sass\fontello\css\fontello-embedded.css                      | CSS        |         46 |         20 |         10 |         76 |
+| c:\Programy\Laragon\laragon\www\ftp\resources\sass\fontello\css\fontello-ie7-codes.css                     | CSS        |         16 |          0 |          2 |         18 |
+| c:\Programy\Laragon\laragon\www\ftp\resources\sass\fontello\css\fontello-ie7.css                           | CSS        |         22 |          3 |          4 |         29 |
+| c:\Programy\Laragon\laragon\www\ftp\resources\sass\fontello\css\fontello.css                               | CSS        |         44 |         20 |          9 |         73 |
+| c:\Programy\Laragon\laragon\www\ftp\resources\sass\fontello\demo.html                                      | HTML       |        261 |          1 |         10 |        272 |
+| c:\Programy\Laragon\laragon\www\ftp\resources\sass\fontello\font\fontello.svg                              | XML        |         27 |          0 |         16 |         43 |
+| c:\Programy\Laragon\laragon\www\ftp\resources\sass\home.scss                                               | SCSS       |         50 |          0 |          7 |         57 |
+| c:\Programy\Laragon\laragon\www\ftp\resources\sass\upload.scss                                             | SCSS       |        131 |          0 |         21 |        152 |
+| c:\Programy\Laragon\laragon\www\ftp\resources\views\app\assets.blade.php                                   | PHP        |        169 |          0 |          4 |        173 |
+| c:\Programy\Laragon\laragon\www\ftp\resources\views\app\index.blade.php                                    | PHP        |         84 |          0 |          2 |         86 |
+| c:\Programy\Laragon\laragon\www\ftp\resources\views\app\layout.blade.php                                   | PHP        |         79 |          0 |         15 |         94 |
+| c:\Programy\Laragon\laragon\www\ftp\resources\views\auth\login.blade.php                                   | PHP        |         62 |          0 |         15 |         77 |
+| c:\Programy\Laragon\laragon\www\ftp\resources\views\auth\passwords\confirm.blade.php                       | PHP        |         41 |          0 |          9 |         50 |
+| c:\Programy\Laragon\laragon\www\ftp\resources\views\auth\passwords\email.blade.php                         | PHP        |         40 |          0 |          8 |         48 |
+| c:\Programy\Laragon\laragon\www\ftp\resources\views\auth\passwords\reset.blade.php                         | PHP        |         53 |          0 |         13 |         66 |
+| c:\Programy\Laragon\laragon\www\ftp\resources\views\auth\register.blade.php                                | PHP        |         63 |          0 |         15 |         78 |
+| c:\Programy\Laragon\laragon\www\ftp\resources\views\auth\verify.blade.php                                  | PHP        |         25 |          0 |          4 |         29 |
+| c:\Programy\Laragon\laragon\www\ftp\resources\views\home\index.blade.php                                   | PHP        |         16 |          0 |          4 |         20 |
+| c:\Programy\Laragon\laragon\www\ftp\resources\views\home\layout.blade.php                                  | PHP        |         32 |          0 |          9 |         41 |
+| c:\Programy\Laragon\laragon\www\ftp\resources\views\layouts\app.blade.php                                  | PHP        |         34 |          0 |          9 |         43 |
+| c:\Programy\Laragon\laragon\www\ftp\routes\api.php                                                         | PHP        |          6 |         10 |          4 |         20 |
+| c:\Programy\Laragon\laragon\www\ftp\routes\channels.php                                                    | PHP        |          5 |         10 |          4 |         19 |
+| c:\Programy\Laragon\laragon\www\ftp\routes\console.php                                                     | PHP        |          6 |         10 |          4 |         20 |
+| c:\Programy\Laragon\laragon\www\ftp\routes\web.php                                                         | PHP        |         21 |         11 |          9 |         41 |
+| c:\Programy\Laragon\laragon\www\ftp\server.php                                                             | PHP        |          8 |          9 |          5 |         22 |
+| c:\Programy\Laragon\laragon\www\ftp\tests\CreatesApplication.php                                           | PHP        |         12 |          5 |          6 |         23 |
+| c:\Programy\Laragon\laragon\www\ftp\tests\Feature\ExampleTest.php                                          | PHP        |         12 |          5 |          5 |         22 |
+| c:\Programy\Laragon\laragon\www\ftp\tests\TestCase.php                                                     | PHP        |          7 |          0 |          4 |         11 |
+| c:\Programy\Laragon\laragon\www\ftp\tests\Unit\ExampleTest.php                                             | PHP        |         10 |          5 |          4 |         19 |
+| c:\Programy\Laragon\laragon\www\ftp\vendor\facade\ignition\resources\compiled\ignition.js                  | JavaScript |          5 |         27 |          0 |         32 |
+| c:\Programy\Laragon\laragon\www\ftp\vendor\facade\ignition\resources\compiled\index.html                   | HTML       |         12 |          0 |          1 |         13 |
+| c:\Programy\Laragon\laragon\www\ftp\webpack.mix.js                                                         | JavaScript |          3 |         10 |          2 |         15 |
+| Total                                                                                                      |            |     36,387 |      1,609 |      1,097 |     39,093 |
++------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+

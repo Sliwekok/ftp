@@ -95,6 +95,12 @@
       "css": "home",
       "code": 59404,
       "src": "entypo"
+    },
+    {
+      "uid": "e99461abfef3923546da8d745372c995",
+      "css": "cog",
+      "code": 59405,
+      "src": "fontawesome"
     }
   ]
 }

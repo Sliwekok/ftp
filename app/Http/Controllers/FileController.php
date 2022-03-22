@@ -15,7 +15,9 @@ class FileController extends Controller
 
     /**
      * All the magic when comes to file manegment is happening here
-     * uploading, deleting, renaming, zipping (wip) 
+     * uploading, deleting, renaming, zipping 
+     * 
+     * todo: directories, search, sorting, recent,  
      */
 
     public function uploadFiles(Request $request){
@@ -26,9 +28,10 @@ class FileController extends Controller
         ]);
         if($validator->fails()){
             $request->session()->flash('error', "Your files can't weight more than 1GB");
-            return back()->withInput($request->all());;
+            return back()->withInput($request->all());
         }
 
+        $path = $this->userPath();
         $files = $request->file('files');
         // if there are no uploaded files return error
         if(!$request->hasFile('files')){
@@ -38,25 +41,24 @@ class FileController extends Controller
 
         // go through all files uploaded
         foreach($files as $file){
-            // static path 
-            $path = $this->userPath();
             $name = $file->getClientOriginalName();
 
             // create hash for file, something like id 
             // $hash = md5($path.'/'.$name);
 
             if(strlen($name) > 127){
-                $request->session()->flash('error', "Can't save file with such a long name");
-                return back()->withInput($request->all());
+                $alert = $this->alert('error', 'Error occured', "Can't save file with such a long name");
+                return $alert;
             }
-            // if file with the same name already exists
+            // if file with the same name already exists, add (index) to the name
             if(Storage::exists("$path/$name")){
-                $request->session()->flash('error', "File $name seems to be already exists");
-                return back()->withInput($request->all());
+                $i = 0;
+                // to do loop to create index number to already existing file
+                // while()
             }
             if(!Storage::putFileAs($path, $file, $name)){
-                $request->session()->flash('error', "Error while uploading files!");
-                return back()->withInput($request->all());
+                $alert = $this->alert('error', 'Error occured', "Error while uploading files!");
+                return $alert;
             }
 
             // save in DB 
@@ -67,34 +69,36 @@ class FileController extends Controller
 
         }
 
-        $request->session()->flash('success', "Files uploaded successfully!");
-        return back()->withInput($request->all());
+        $alert = $this->alert('success', 'Files uploaded', "All files uploaded successfully");
+        return $alert;
     }
 
 
-    // delete single file from storage and DB
-    public function deleteFile($owner, $filename, Request $request){        
+    // delete single file or directory from storage and DB
+    public function deleteFile($owner, $filename){        
+        // check for auth
         if($owner !== Session::get('token')){
             $alert = $this->alert('error', 'Error occured', "You can't delete other users file");
             return $alert;
         }
         $path = $this->userPath();
-        if(!Storage::exists($path)){
+        // check if file exists
+        if(Storage::missing($path)){
             $alert = $this->alert('error', 'Error occured', "File wasn't found");
             return $alert;
         }
-        else{
-            $storage = Storage::delete($path.$filename);
-            $query   = DB::table('files')->where('owner', $owner)->where('name', $filename)->delete();   
-            if($storage && $query){
-                $alert = $this->alert('success', 'File deleted', "Successfully deleted file");
-                return $alert;
-            }
-            else{
-                $alert = $this->alert('error', 'Error occured', "Unknown error occured");
-                return $alert;
-            }
+        $storage = Storage::delete($path.$filename);
+        $query   = DB::table('files')->where('owner', $owner)->where('name', $filename)->delete();  
+
+        if($storage && $query){
+            $alert = $this->alert('success', 'File deleted', "Successfully deleted file");
+            return $alert;
         }
+        else{
+            $alert = $this->alert('error', 'Error occured', "Unknown error occured");
+            return $alert;
+        }
+        return;
     }
 
     // rename single file
@@ -104,10 +108,9 @@ class FileController extends Controller
             $alert = $this->alert('error', 'Error occured', "You can't delete other users file");
             return $alert;
         }
-
         //some validation
         $validator = Validator::make($request->all(),[
-            'newFilename' => 'required|max:255|min:4|string', // this is max 1gb file in kb
+            'newFilename' => 'required|max:255|min:4|string',
         ]);
         if($validator->fails()){
             $alert = $this->alert('error', 'Bad filename', 'File name cannot be blank or too long'); 
@@ -118,7 +121,6 @@ class FileController extends Controller
         $query = DB::table('files')->where('owner', $owner)->where('name', $filename)->update(['name' => $newFilename]);
         $path =  $this->userPath();
 
-        // some validation
         if(!Storage::exists($path.$filename)){
             $alert = $this->alert('error', 'Error occured', "File wasn't found");
             return $alert;
@@ -149,12 +151,9 @@ class FileController extends Controller
         $files = $request->input('files');
         $zipName = 'StoreIt.zip';
         $path = $this->userPath();
-        // check if zip file exists, if not, create it
-        if(Storage::missing($path. $zipName)) if(!Zip::create($path."test.zip", true)) return "błąd";
-
         $zip = Zip::open(storage_path('app'. $path . $zipName));
 
-        // trim everything in zip, to not re-downloading the same staff
+        // trim everything in zip, to not re-downloading the same stuff
         $zippedPreviously =  $zip->listFiles();
         foreach($zippedPreviously as $file){
             $zip->delete($file);
@@ -174,14 +173,13 @@ class FileController extends Controller
                 return $alert;
             }
         }
-
         $zip->close();
 
         $downloadUrl = Storage::url($path. $zipName);
         return $downloadUrl;
-
     }
-    // funciton to return error message (but not always)
+
+    // function to return error message (but not always)
     // extends blade layout alert and js showAlert()
     // params:  status error/success 
     //          header as main message

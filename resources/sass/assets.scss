@@ -38,3 +38,42 @@
         }
     }
 }
+.modal{
+    visibility: none;
+
+    .wrapper{
+        visibility: none;
+        display: none;
+        padding: 3.5vh;
+        
+        .textInput{
+            margin-bottom: 3vh;
+        }
+
+    }
+
+}
+#moveTo{
+    .directoryIconBig{
+        display: inline-flex;
+        justify-content: center;
+        position: relative;
+        height: 15vh;
+        padding: 2vh;
+        transition: background-color 0.2s ease;
+        cursor: pointer;
+
+        &:hover{
+            background-color: lighten($bg-color, 0.2);
+        }
+        
+        i{
+            position: absolute;
+            font-size: 7.5vh;
+            color: rgba($font-color, .55); 
+        }
+        p{
+            vertical-align: text-bottom;
+        }
+    }
+}

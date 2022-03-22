@@ -1,6 +1,6 @@
-
-// add grouping files to download
-var selectedFiles= new Array();
+import * as Assets from './assets.js';
+// add grouping files to download zip files
+var selectedFiles = new Array();
 (function(){
     var checkEnabled = false;
 
@@ -65,9 +65,10 @@ var selectedFiles= new Array();
             $("#downloadButton").attr("style", "display: none !important");
         }
     });
+    return
 })();
 
-// show div to allow donwload selected files
+// show div to allow download selected files
 $(document).on("click", "#zipper", function(){
     $.ajax({
         url: '/app/downloadZip',
@@ -79,58 +80,155 @@ $(document).on("click", "#zipper", function(){
             return false;
         },
         success: function(data){
-            if(data instanceof Object){
-                showAlert(data);
-            }
-            else{
-                $("#zipper").hide(0);
-                $("#zipped").show(0);
-                $("#zipped a").attr("href", data).click();
-            }
-            console.log(data);
+            $("#zipper").hide(0);
+            $("#zipped").show(0);
+            $("#zipped a").attr("href", data).click();
             return true;
         }
     });
     return;
 })
 
-// it's the same function as in application.js, but because of some weird webpack modules, it's not global
-export function showAlert(data){
-    var state    = data['status'],
-        msg      = data['message'],
-        header   = data['header'],
-        className= (state == 'error') ? "danger" : "success";
+// on click on dropdown list on file list, activate model to do right action
+$(document).on('click', ".openModal", function(){
+    var action          = $(this).data('action'),
+        fileUrl         = $(this).data('file-url'),
+        fileName        = $(this).data('file-name'),
+        fileDescription = $(this).data('description');
+    switch(action){
+        case 'rename':
+            openRename(fileName, fileUrl);
+            break;
+        case 'addDescription':
+            openAddDescription(fileName, fileUrl, fileDescription);
+            break;
+        case 'moveTo':
+            openMoveTo(fileName, fileUrl);
+            break;
+        default:
+            break;
+    }   
+    return;
+})
 
-    $(".alert").addClass('alert-'+className).fadeIn(50);
-    $("#alertHeader").text(header);
-    $("#alertContent").text(msg);
-    
-    // hide alert by hand, because by default (bootstrap), it's getting deleted
-    (() => {
-        var div = $(".alert");
-        
-        function hideMethod(){
-            div.fadeOut(100);
-            setTimeout(function(){
-                if(div.hasClass("alert-success")) div.removeClass("alert-success");
-                if(div.hasClass("alert-danger")) div.removeClass("alert-danger");
-            }, 100);
-        }
-        
-        // on click on alert close button
-        $(document).on('click', ".btn-close", function(){
-            hideMethod();
-            // location.reload();
-            return;
+// open description model div
+function openAddDescription(fileName, fileUrl, fileDescription){
+    const div = $('#addDescription');
+
+    Assets.showModal(div);
+    div.find('.blockquote-footer').text(fileName);
+    div.find('#description').val(fileDescription);
+
+    $(document).on('click', ".submit", function(){
+        $.ajax({
+            url: fileUrl,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: 'post',
+            data: {newFilename: $('#description').val()},
+            error: function(error){
+                console.log("=========");
+                console.log(error); 
+                return false;
+            },
+            success: function(data){
+                Assets.refreshContent("http://ftp.test/app");
+                Assets.showAlert(data);
+                div.hide(50);
+                return true;
+            }
         });
-        
-        // after 15sec hide it automatically
-        setTimeout(function(){
-            hideMethod();
-            // location.reload();
-            return;
-        }, 15000)
-        
-    })();
+    });
     return;
 }
+
+// open modal rename 
+function openRename(fileName, fileUrl){
+    const div = $('#rename');
+
+    Assets.showModal(div);
+    div.find('.blockquote-footer').text(fileName);
+    div.find('#newFilename').val(fileName);
+
+    $(document).on('click', ".submit", function(){
+        $.ajax({
+            url: fileUrl,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: 'post',
+            data: {newFilename: $('#newFilename').val()},
+            error: function(error){
+                console.log("=========");
+                console.log(error); 
+                return false;
+            },
+            success: function(data){
+                Assets.refreshContent("http://ftp.test/app");
+                Assets.showAlert(data);
+                div.hide(50);
+                return true;
+            }
+        });
+    });
+    return;
+}
+// open move to modal box
+function openMoveTo(filename, filepath){
+    const div = $('#moveTo');
+    $(".blockquote-footer").text(filename);
+
+    Assets.showModal(div);
+
+    $(document).on('click', ".directoryIconBig", function(){
+        $.ajax({
+            url: '/app/moveTo',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: 'post',
+            data: {
+                oldFilepath: filepath,
+                newFilepath: $(this).data('url'),
+                filename: filename
+            },
+            error: function(error){
+                console.log("=========");
+                console.log(error); 
+                return false;
+            },
+            success: function(data){
+                Assets.refreshContent("http://ftp.test/app");
+                Assets.forceCloseModal(div);
+                return true;
+            }
+        });
+    });
+    return;
+}
+// send prompt when user want to delete file
+// variable to check if user has deleted file (prompt)
+var previouslyDeleted = false;
+$(document).on('click', '.deleteFile', function(){
+    var fileUrl = $(this).data("file-url");
+    
+    // check if user has already deleted some file in session. if not - show prompt
+    if(previouslyDeleted === false){
+        if(confirm("Are you sure you want to delete that file? There'll be no way back to recover it")) {
+            previouslyDeleted = true;    
+        } 
+        else{
+            return;
+        }
+    }
+    // if it is directory, change url to matching route
+    if($(this).data("type") == "directory"){
+        var url = 'app' + fileUrl + '/deleteDirectory';
+    }
+    else{
+        var url = 'app' + fileUrl + '/delete';
+    }
+    Assets.deleteFile(url);
+    return;
+});
